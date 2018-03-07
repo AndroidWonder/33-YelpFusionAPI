@@ -18,8 +18,6 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-import static android.R.attr.data;
-
 public class MainActivity extends AppCompatActivity {
 
     private final String
