@@ -22,8 +22,8 @@ import static android.R.attr.data;
 
 public class MainActivity extends AppCompatActivity {
 
-    private final String CLIENT_ID = "2zvUWE9erOVhGn8lLzdzuQ";
-    private final String CLIENT_SECRET = "G4csiHa4ntUGNFJJtchEjxhvHXgEbkmCmKFPWeTVUwfgKaH5ZXfudIimP307Z8gZ";
+    private final String
+            API_KEY = "TSKoW6Rmk9zXWMZP_-t6BeC0BPTPBbFxZR3I7GYSxs6UHnMiN3hOwDeNFkvNqx3d7S5f9e4Qt7iFEoZ6b_wWE4W-k1EsHpqyBktOS4lMR4M8zcyrMzO9BMpezECgWnYx";
 
 // API constants
     private final String API_HOST = "https://api.yelp.com";
@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
 
 // Defaults for example
     private String TERM = "dinner";
-    private String LOCATION = "San Diego, CA";
+    private String LOCATION = "San Francisco, CA";
     private int SEARCH_LIMIT = 5;
 
     private TextView text = null;
@@ -56,13 +56,12 @@ public class MainActivity extends AppCompatActivity {
 
         text=(TextView)findViewById(R.id.texter);
 
-        //using client id and client secret, get access token and then search
+
         Thread t = new Thread(AuthToken);
         t.start();
 
     }
-    //this runnable object will first get an access token and then using it
-    //do a Yelp search so there will be 2 commands issued to the Yelp API
+
      Runnable AuthToken = new Runnable(){
          public void run(){
 
@@ -70,66 +69,8 @@ public class MainActivity extends AppCompatActivity {
 
              InputStream is = null;
 
-             String query_string = "?client_id=" + CLIENT_ID + "&client_secret=" + CLIENT_SECRET +
-                     "&grant_type=" + GRANT_TYPE;
-
-             //first get access token
-             try {
-                 URL url = new URL(API_HOST + TOKEN_PATH  + query_string);
-                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-
-                 conn.setReadTimeout(10000 /* milliseconds */);
-                 conn.setConnectTimeout(15000 /* milliseconds */);
-                 conn.setRequestMethod("POST");
-                 conn.setDoInput(true);
-                 conn.setUseCaches(false);
-                 conn.setRequestProperty("Content-Language", "en-US");
-                 conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
-
-                 // Starts the query
-                 conn.connect();
-                 int response = conn.getResponseCode();
-                 Log.e("JSON", "The response is: " + response);
-
-                 //if response code not 200, end thread
-                 if (response != 200) return;
-                 is = conn.getInputStream();
-
-                 BufferedReader reader = new BufferedReader(
-                         new InputStreamReader(is));
-                 String line;
-                 while ((line = reader.readLine()) != null) {
-                     builder.append(line);
-                     Log.e("JSON", line);
-                 }
-
-                 // Makes sure that the InputStream is closed after the app is
-                 // finished using it.
-             }	catch(IOException e) {}
-             finally {
-                 if (is != null) {
-                     try {
-                         is.close();
-                     } catch(IOException e) {}
-                 }
-             }
-
-             //convert StringBuilder to String
-             String readJSONFeed = builder.toString();
-             Log.e("JSON", readJSONFeed);
-
-             //decode JSON and get access token
-             try {
-                 JSONObject reader = new JSONObject(readJSONFeed);
-                 ACCESS_TOKEN = reader.getString("access_token");
-                 Log.e("JSON", ACCESS_TOKEN);
-
-             } catch (JSONException e) {e.getMessage();
-                 e.printStackTrace();
-             }
-
              //now do search on same thread
-             query_string = "?term=" + TERM + "&location=" + LOCATION + "&limit=" + SEARCH_LIMIT;
+             String query_string = "?term=" + TERM + "&location=" + LOCATION + "&limit=" + SEARCH_LIMIT;
 
              try {
                  URL url = new URL(API_HOST + SEARCH_PATH  + query_string);
@@ -141,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
                  conn.setDoInput(true);
                  conn.setUseCaches(false);
                  conn.setRequestProperty("Content-Language", "en-US");
-                 conn.setRequestProperty("authorization", "Bearer " + ACCESS_TOKEN);
+                 conn.setRequestProperty("authorization", "Bearer " + API_KEY);
 
                  // Starts the query
                  conn.connect();
@@ -173,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
              }
 
              //convert StringBuilder to String
-             readJSONFeed = builder.toString();
+            String readJSONFeed = builder.toString();
              Log.e("JSON", readJSONFeed);
 
              //decode JSON and get search results
