@@ -34,7 +34,8 @@ public class MainActivity extends AppCompatActivity {
 
 // Defaults for example
     private String TERM = "dinner";
-    private String LOCATION = "San Francisco, CA";
+    private String LOCATION = "Boston, MA";
+   // private String LOCATION = "San Francisco, CA";
     private int SEARCH_LIMIT = 5;
 
     private TextView text = null;
