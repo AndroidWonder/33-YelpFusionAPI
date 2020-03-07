@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/33-YelpFusionAPI.iml" filepath="$PROJECT_DIR$/33-YelpFusionAPI.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/33-YelpFusionAPI.iml" filepath="$PROJECT_DIR$/33-YelpFusionAPI.iml" group="33-YelpFusionAPI" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" group="33-YelpFusionAPI/app" />
     </modules>
   </component>
 </project>
