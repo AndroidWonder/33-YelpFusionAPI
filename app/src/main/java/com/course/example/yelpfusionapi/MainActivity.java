@@ -33,8 +33,8 @@ public class MainActivity extends AppCompatActivity {
     private String ACCESS_TOKEN = null;
 
 // Defaults for example
-    private String TERM = "Mexican";
-    private String LOCATION = "Los Angeles, CA";
+    private String TERM = "Italian";
+    private String LOCATION = "Brooklyn, NY";
    // private String LOCATION = "San Francisco, CA";
     private int SEARCH_LIMIT = 15;
 
