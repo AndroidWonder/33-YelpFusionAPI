@@ -2,7 +2,7 @@ package com.course.example.yelpfusionapi;
 
 import android.os.Handler;
 import android.os.Message;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
 // Defaults for example
     private String TERM = "Italian";
     private String LOCATION = "Brooklyn, NY";
-   // private String LOCATION = "San Francisco, CA";
+    //private String LOCATION = "San Francisco, CA";
     private int SEARCH_LIMIT = 15;
 
     private TextView text = null;
