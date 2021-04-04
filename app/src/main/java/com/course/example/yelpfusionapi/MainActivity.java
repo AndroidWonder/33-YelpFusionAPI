@@ -1,6 +1,7 @@
 package com.course.example.yelpfusionapi;
 
 import android.os.Handler;
+import android.os.Looper;
 import android.os.Message;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
@@ -41,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView text = null;
 
     //messages from background thread contain data for UI
-    Handler handler = new Handler(){
+    Handler handler = new Handler(Looper.getMainLooper()){
         public void handleMessage(Message msg) {
             String title =(String) msg.obj;
             text.append(title + "\n" +"\n");
