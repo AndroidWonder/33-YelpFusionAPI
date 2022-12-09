@@ -56,14 +56,12 @@ public class MainActivity extends AppCompatActivity {
 
         text=(TextView)findViewById(R.id.texter);
 
-
         Thread t = new Thread(AuthToken);
         t.start();
 
     }
 
-     Runnable AuthToken = new Runnable(){
-         public void run(){
+     Runnable AuthToken = () -> {
 
              StringBuilder builder = new StringBuilder();
 
@@ -91,12 +89,15 @@ public class MainActivity extends AppCompatActivity {
 
                  //if response code not 200, end thread
                  if (response != 200) return;
+                 //create stream from socket
                  is = conn.getInputStream();
 
+                 //read characters from stream, then characters to text buffered
                  BufferedReader reader = new BufferedReader(
                          new InputStreamReader(is));
                  String line;
                  builder = new StringBuilder();
+                 //read text into StringBuilder
                  while ((line = reader.readLine()) != null) {
                      builder.append(line);
                      Log.e("JSON", line);
@@ -145,8 +146,6 @@ public class MainActivity extends AppCompatActivity {
                  e.printStackTrace();
              }
 
-         }
      } ;
-
 
 }
